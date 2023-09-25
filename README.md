@@ -4,6 +4,8 @@
 Maaf untuk sekarang hanya bisa membuat ini karena 
 belajar Flutter masih 2 hari 😅🫡
 
+Semoga diterima 🙏
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
