@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'dart:ui';
+import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_pesanan_fix/services/menu.dart';
@@ -25,6 +26,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+
       // Makanan
       body: FutureBuilder<List<MenuData>>(
           future: futureMenuData,
@@ -188,6 +190,73 @@ class _HomePageState extends State<HomePage> {
                   });
             }
           }),
+
+      //
+      // button Sheet
+      bottomSheet: Container(
+        height: 80,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black, width: 0.45),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20.0), // Radius untuk sudut kiri atas
+            topRight: Radius.circular(20.0), // Radius untuk sudut kanan atas
+            bottomLeft: Radius.circular(0.0), // Radius untuk sudut kiri bawah
+            bottomRight: Radius.circular(0.0), // Radius untuk sudut kanan bawah
+          ),
+          color: Colors.white,
+        ),
+
+        // Icon
+        child: const Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 30, right: 20),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.add_shopping_cart_rounded,
+                    size: 40,
+                    color: Colors.teal,
+                  )
+                ],
+              ),
+            ),
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 10, top: 20),
+                  child: Text('Total Pembayaran'),
+                ),
+                // total pembayaran
+                Text('Rp 2.8000'),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  double calculateTotalPayment(
+      List<MenuData> menuDataList, Map<int, int> quantityMap) {
+    double totalPayment = 0.0;
+
+    for (final menuData in menuDataList) {
+      final quantity = quantityMap[menuData.id] ?? 0;
+      totalPayment += menuData.harga * quantity;
+    }
+
+    return totalPayment;
+  }
+
+  Future _displayBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) => Container(
+        height: 200,
+      ),
     );
   }
 
