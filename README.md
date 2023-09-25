@@ -1,6 +1,8 @@
 # flutter_pesanan_fix
 
-A new Flutter project.
+# Must read 
+Maaf untuk sekarang hanya bisa membuat ini karena 
+belajar Flutter masih 2 hari 😅🫡
 
 ## Getting Started
 
